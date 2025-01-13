@@ -7,7 +7,7 @@ export default function Form({ todos, setTodos }) {
   function handleSubmit(e) {
     e.preventDefault();
     if (todo.name.trim() === "") return; // Avoid adding empty todos
-    setTodos([...todos, todo]); // Add the new todo
+    setTodos([...todos, { ...todo, id: Date.now() }]); // Add unique id to each todo
     setTodo({ name: "", done: false }); // Reset the input
   }
 
