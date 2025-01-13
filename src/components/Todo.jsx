@@ -1,31 +1,18 @@
+
 import { useState } from "react";
-import TodoItem from "./TodoItem";
+import Todolist from "./Todolist";
+import Form from "./Form";
 
 export default function Todo() {
-    const [todo, setTodo] = useState("");
-    const [todos, setTodos] = useState([]);
 
-    function handleSubmit(e) {
-        e.preventDefault();
-        if (todo.trim() === "") return; // Avoid adding empty todos
-        setTodos([...todos, todo]); // Ensure todo is a string
-        setTodo("");
-    }
+    const [todos, setTodos] = useState([]);
 
     return (
         <div>
-            <form onSubmit={handleSubmit}>
-                <input 
-                    onChange={(e) => setTodo(e.target.value)} 
-                    value={todo} 
-                    type="text" 
-                />
-                <button type="submit">Add</button>
-            </form>
 
-            {todos.map((item, index) => (
-                <TodoItem key={index} item={item} /> // Use index as a key for simplicity
-            ))}
+            <Form todos={todos} setTodos={setTodos} />
+            <Todolist todos = {todos} setTodos={setTodos} />
+
         </div>
     );
 }
