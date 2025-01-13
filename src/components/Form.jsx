@@ -1,29 +1,30 @@
 import { useState } from "react";
-import styles from "./form.module.css"
-export default function Form({todos, setTodos}) {
+import styles from "./form.module.css";
 
-  const [todo, setTodo] = useState("");
-
+export default function Form({ todos, setTodos }) {
+  const [todo, setTodo] = useState({ name: "", done: false });
 
   function handleSubmit(e) {
     e.preventDefault();
-    if (todo.trim() === "") return; // Avoid adding empty todos
-    setTodos([...todos, todo]); // Ensure todo is a string
-    setTodo("");
+    if (todo.name.trim() === "") return; // Avoid adding empty todos
+    setTodos([...todos, todo]); // Add the new todo
+    setTodo({ name: "", done: false }); // Reset the input
   }
 
   return (
     <form className={styles.todoform} onSubmit={handleSubmit}>
       <div className={styles.inputContainer}>
-      <input
-      className={styles.textInput}
-        onChange={(e) => setTodo(e.target.value)}
-        value={todo}
-        type="text"
-        placeholder="Enter item..."
-      />
-      <button className={styles.inputButton} type="submit">Add</button>
+        <input
+          className={styles.textInput}
+          onChange={(e) => setTodo({ name: e.target.value, done: false })}
+          value={todo.name}
+          type="text"
+          placeholder="Enter item..."
+        />
+        <button className={styles.inputButton} type="submit">
+          Add
+        </button>
       </div>
     </form>
-  )
+  );
 }
