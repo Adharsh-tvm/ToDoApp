@@ -6,7 +6,6 @@ export default function TodoItem({ item, todos, setTodos }) {
   const [newName, setNewName] = useState(item.name);
 
   function handleDelete(item) {
-    console.log(`Delete button clicked for ${item.name}`);
     setTodos(todos.filter((todo) => todo.id !== item.id)); // Use id for comparison
   }
 
