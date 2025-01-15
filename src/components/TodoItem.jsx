@@ -21,8 +21,26 @@ export default function TodoItem({ item, todos, setTodos }) {
   }
 
   function handleEditSave() {
+    const trimmedName = newName.trim();
+
+    // Validation: Check for empty or whitespace-only input
+    if (trimmedName === "") {
+      alert("Name cannot be empty or whitespace only.");
+      return;
+    }
+
+    // Validation: Check for duplicates
+    const isDuplicate = todos.some(
+      (todo) => todo.name.toLowerCase() === trimmedName.toLowerCase() && todo.id !== item.id
+    );
+    if (isDuplicate) {
+      alert("This item already exists.");
+      return;
+    }
+
+    // Update the todos list with the edited item
     const updatedTodos = todos.map((todo) =>
-      todo.id === item.id ? { ...todo, name: newName } : todo
+      todo.id === item.id ? { ...todo, name: trimmedName } : todo
     );
     setTodos(updatedTodos);
     setIsEditing(false);
