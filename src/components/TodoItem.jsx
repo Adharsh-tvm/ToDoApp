@@ -1,4 +1,4 @@
-import styles from './todoitem.module.css';
+import styles from "./todoitem.module.css";
 import { useState } from "react";
 
 export default function TodoItem({ item, todos, setTodos }) {
@@ -31,7 +31,9 @@ export default function TodoItem({ item, todos, setTodos }) {
 
     // Validation: Check for duplicates
     const isDuplicate = todos.some(
-      (todo) => todo.name.toLowerCase() === trimmedName.toLowerCase() && todo.id !== item.id
+      (todo) =>
+        todo.name.toLowerCase() === trimmedName.toLowerCase() &&
+        todo.id !== item.id
     );
     if (isDuplicate) {
       alert("This item already exists.");
@@ -81,10 +83,7 @@ export default function TodoItem({ item, todos, setTodos }) {
               >
                 &#10060;
               </button>
-              <button
-                onClick={handleEditToggle}
-                className={styles.editButton}
-              >
+              <button onClick={handleEditToggle} className={styles.editButton}>
                 Edit
               </button>
             </span>

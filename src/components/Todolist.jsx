@@ -1,5 +1,5 @@
 import TodoItem from "./TodoItem";
-import styles from './todolist.module.css';
+import styles from "./todolist.module.css";
 
 export default function Todolist({ todos, setTodos }) {
   // Sort todos: incomplete items first, then completed ones
